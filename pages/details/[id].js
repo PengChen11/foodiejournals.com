@@ -9,39 +9,49 @@ import Router from 'next/router';
 class Recipe_info extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      user: null,
-      access: null,
-    }
+    // this.state = {
+    //   user: null,
+    //   access: null,
+    // }
     this.deleteHandler = this.deleteHandler.bind(this);
     this.url = require("../../components/url_back");
     this.delete_url = `${this.url}api/recipes/${this.props.data.id}`
   }
-  componentDidMount = () => {
-    const user = localStorage.getItem('foodiejournals-user');
-    const access = localStorage.getItem('foodiejournals-access-token');
-    if (user && access) {
-      this.setState({
-          user,
-          access,
-      });
-    }
+  // componentDidMount = () => {
+  //   const user = sessionStorage.getItem('foodiejournals-user');
+  //   const access = sessionStorage.getItem('foodiejournals-access-token');
+  //   if (user && access) {
+  //     this.setState({
+  //         user,
+  //         access,
+  //     });
+  //   }
 
-  }
+  // }
 
 
   async deleteHandler(e){
-    let accessToken= this.state.access;
+    let accessToken= sessionStorage.getItem("foodiejournals-access-token");
     
     const config = {
       headers: { "Authorization": "Bearer " + accessToken }
     }
     try {
       await axios.delete(this.delete_url, config);
-      Router.push('/account')
+      Router.push('/account');
     }
     catch {
-      alert("you don't own this post")
+      let refreshToken= sessionStorage.getItem("foodiejournals-refresh-token")
+      try {
+        const refreshRes = await axios.post(refresh_url, refreshToken);
+        accessToken = refreshRes.data.access;
+        sessionStorage.setItem("foodiejournals-access-token", accessToken);
+        await axios.delete(this.delete_url, config);
+        Router.push('/account');
+      }
+      catch{
+        alert("you don't own this post")
+      }
     }
   }
 

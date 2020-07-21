@@ -1,11 +1,14 @@
-import Link from 'next/link';
-
-import Login from './Login';
-import Signup from './Signup';
-import Search_form from './Search_form';
 import React from 'react';
 import axios from 'axios';
 import Router from 'next/router';
+import Link from 'next/link';
+
+// import from components
+import Login from './Login';
+import Signup from './Signup';
+import Search_form from './Search_form';
+
+
 const url = require("../url_back");
 const register_url = url+'api/users/register/'
 const login_url = url+'api/token/'
@@ -22,8 +25,8 @@ class Navbar extends React.Component {
   
   componentDidMount = () => {
 
-    const user = localStorage.getItem('foodiejournals-user');
-    const access = localStorage.getItem('foodiejournals-access-token');
+    const user = sessionStorage.getItem('foodiejournals-user');
+    const access = sessionStorage.getItem('foodiejournals-access-token');
 
     if (user && access) {
       $('#login-tab').addClass('d-none');
@@ -39,19 +42,15 @@ class Navbar extends React.Component {
 
   };
   signOutHandler(e){
-    window.localStorage.clear();
+    window.sessionStorage.clear();
   }
 
 
   async accountToken(response){
     let accessToken = response.data.access;
-    // console.log(accessToken)
-
-    const refreshRes = await axios.post(refresh_url, {refresh:response.data.refresh});
-    // console.log('refreshed token', refreshRes.data)
-    accessToken = refreshRes.data.access;
-
-    localStorage.setItem("foodiejournals-access-token", accessToken);
+    let refreshToken = response.data.refresh;
+    sessionStorage.setItem("foodiejournals-access-token", accessToken);
+    sessionStorage.setItem("foodiejournals-refresh-token", refreshToken);
 
     Router.push('/account');
   }
@@ -74,7 +73,7 @@ class Navbar extends React.Component {
       const response = await axios.post(login_url, account);
       $('#modalLoginForm').modal('hide');
       this.accountToken(response);
-      localStorage.setItem("foodiejournals-user", account.email);
+      sessionStorage.setItem("foodiejournals-user", account.email);
     }
     catch {
       $('#wrong-password').toggleClass('d-none');
