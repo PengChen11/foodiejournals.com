@@ -17,17 +17,23 @@ class Recipe_info extends React.Component {
     this.url = require("../../components/url_back");
     this.delete_url = `${this.url}api/recipes/${this.props.data.id}`
   }
-  // componentDidMount = () => {
-  //   const user = sessionStorage.getItem('foodiejournals-user');
-  //   const access = sessionStorage.getItem('foodiejournals-access-token');
-  //   if (user && access) {
-  //     this.setState({
-  //         user,
-  //         access,
-  //     });
-  //   }
-
-  // }
+  componentDidMount = () => {
+    // const user = sessionStorage.getItem('foodiejournals-user');
+    // const access = sessionStorage.getItem('foodiejournals-access-token');
+    // if (user && access) {
+    //   this.setState({
+    //       user,
+    //       access,
+    //   });
+    // }
+    const userId = sessionStorage.getItem('foodiejournals-user-id');
+    const recipeAuthorId = this.props.data.author;
+    if (userId){
+      if (parseInt(userId)===recipeAuthorId){
+        $('#recipeDeleteBtn').removeClass('d-none');
+      }
+    }
+  }
 
 
   async deleteHandler(e){
@@ -80,7 +86,7 @@ class Recipe_info extends React.Component {
                 <p className="card-text">
                   {this.props.data.steps}
                 </p>
-                <button className="btn-primary justify-self-center d-block" onClick={this.deleteHandler}>Delete this recipe</button>
+                <button id="recipeDeleteBtn" className="btn-primary d-none" onClick={this.deleteHandler}>Delete this recipe</button>
               </div>
             </div>
           </div>
