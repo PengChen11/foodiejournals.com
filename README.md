@@ -16,9 +16,29 @@ For the details about the old project repo , please visit [Old Group project](ht
 - [Corey Marchand](https://github.com/corey-marchand)
 - [H Griffin](https://github.com/h-griffin)
 
+___
+
+## Version History
+
+### V 1.0.1  --Jul 21th 2020
+
+- Updated the way to save user token, from local storage to session storage.
+- Bug fixed for user register and login process.
+- Authentication bug fixed when post new recipe.
+- Authentication bug fixed when deleting recipes.
+- Styling change.
+
+### [Click here to see earlier version history](info/versions.md)
+
+___
+
+## [Back end Github Repo](https://github.com/PengChen11/foodie-journals-back)
+
 ## [Deployed Backend - Heroku](https://foodie-journals.herokuapp.com/)
 
 ## [Deployed Front-end - Vercel](https://foodiejournals.com)
+
+___
 
 ## Project description
 
@@ -56,9 +76,3 @@ PostgreSQL
 SQLite
 ElephantSQL
 heroku/aws/Azure
-
-## [click to see step by step set up/creation](progress.md)
-
-## Links and Resources
-
-- [vercel CDN](https://vercel.com/edge-network)

@@ -9,7 +9,7 @@ const Carousel = (props) => {
           slides.push(
             <div key={props.data.all[i].id} className="carousel-item active ">
               <a href={url+props.data.all[i].id.toString()}>
-                <img className="carousel-img d-block img-thumbnail m-5 mx-auto" src={props.data.all[i].img_src_2} alt=" slide"/>
+                <img className="carousel-img d-block m-5 mx-auto" src={props.data.all[i].img_src_2} alt=" slide"/>
               </a>
             </div>
           )
@@ -20,7 +20,7 @@ const Carousel = (props) => {
         slides.push(
           <div key={props.data.all[i].id} className="carousel-item ">
             <a href={url+props.data.all[i].id.toString()}>
-                <img className="carousel-img d-block img-thumbnail m-5 mx-auto" src={props.data.all[i].img_src_2} alt=" slide"/>
+                <img className="carousel-img d-block  m-5 mx-auto" src={props.data.all[i].img_src_2} alt=" slide"/>
               </a>
           </div>
         )
