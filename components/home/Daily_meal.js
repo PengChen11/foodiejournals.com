@@ -16,7 +16,7 @@ const Daily_meal = (props) => {
                         <h5 className="card-title">{props.data.breakfast[0].title}</h5>
                         <p className="card-text">Delicious and wakes you up.</p>
                         <Link href="/details/[id]" as={`${url}${props.data.breakfast[0].id}`}>
-                          <a className="btn btn-primary">Learn to cook it</a>
+                          <a className="btn btn-primary stretched-link">Learn to cook it</a>
                         </Link>
                     </div>
                 </div>
@@ -28,7 +28,7 @@ const Daily_meal = (props) => {
                       <h5 className="card-title">{props.data.lunch[0].title}</h5>
                       <p className="card-text">Quick energy restoring Lunch.</p>
                       <Link href="/details/[id]" as={`${url}${props.data.lunch[0].id}`}>
-                        <a className="btn btn-primary">Learn to cook it</a>
+                        <a className="btn btn-primary stretched-link">Learn to cook it</a>
                       </Link>
                     </div>
                 </div>
@@ -40,7 +40,7 @@ const Daily_meal = (props) => {
                         <h5 className="card-title">{props.data.dinner[0].title}</h5>
                         <p className="card-text">Great dinner to enjoy with your family.</p>
                         <Link href="/details/[id]" as={`${url}${props.data.dinner[0].id}`}>
-                          <a className="btn btn-primary">Learn to cook it</a>
+                          <a className="btn btn-primary stretched-link">Learn to cook it</a>
                         </Link>
                     </div>
                 </div>

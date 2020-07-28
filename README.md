@@ -20,13 +20,12 @@ ___
 
 ## Version History
 
-### V 1.0.1  --Jul 21th 2020
+### V 1.0.2  --Jul 25th 2020
 
-- Updated the way to save user token, from local storage to session storage.
-- Bug fixed for user register and login process.
-- Authentication bug fixed when post new recipe.
-- Authentication bug fixed when deleting recipes.
-- Styling change.
+- Bug fixed for home page carousel image.
+- Bug fixed for user delete buttom showing auth error.
+- Changed carousel style from slide to fade
+- Applied stretched link to all recipe cards.
 
 ### [Click here to see earlier version history](info/versions.md)
 
@@ -60,14 +59,14 @@ view github project board for user stories
 
 ## Tools
 
-### Front End:
+### Front End
 
 React.js
 Next.js
 bootstrap
 sass
 
-### Back End:
+### Back End
 
 Python
 Django
