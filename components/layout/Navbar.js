@@ -21,6 +21,7 @@ class Navbar extends React.Component {
     this.accountLoginHandler = this.accountLoginHandler.bind(this);
     this.signOutHandler = this.signOutHandler.bind(this);
     this.accountToken = this.accountToken.bind(this);
+    this.findUserId = this.findUserId.bind(this);
   }
   
   componentDidMount = () => {
@@ -33,6 +34,7 @@ class Navbar extends React.Component {
       $("#create-tab").addClass('d-none');
       $("#logout-tab").removeClass('d-none');
       $("#my-account").removeClass('d-none');
+
     } else {
       $('#login-tab').removeClass('d-none');
       $("#create-tab").removeClass('d-none');
@@ -46,11 +48,22 @@ class Navbar extends React.Component {
   }
 
 
+  async findUserId (user){
+    // let url = require('../components/url_back');
+    let searchUrl = `${url}api/users/?search=${user}`
+    let response = await axios.get(searchUrl);
+    alert('runs')
+    sessionStorage.setItem('foodiejournals-user-id', response.data[0].id)
+  }
+
+
   async accountToken(response){
     let accessToken = response.data.access;
     let refreshToken = response.data.refresh;
     sessionStorage.setItem("foodiejournals-access-token", accessToken);
     sessionStorage.setItem("foodiejournals-refresh-token", refreshToken);
+    const user = sessionStorage.getItem('foodiejournals-user');
+    this.findUserId(user);
 
     Router.push('/account');
   }
@@ -72,8 +85,8 @@ class Navbar extends React.Component {
     try {
       const response = await axios.post(login_url, account);
       $('#modalLoginForm').modal('hide');
-      this.accountToken(response);
       sessionStorage.setItem("foodiejournals-user", account.email);
+      this.accountToken(response);
     }
     catch {
       $('#wrong-password').toggleClass('d-none');

@@ -15,7 +15,8 @@ class Recipe_info extends React.Component {
     // }
     this.deleteHandler = this.deleteHandler.bind(this);
     this.url = require("../../components/url_back");
-    this.delete_url = `${this.url}api/recipes/${this.props.data.id}`
+    this.delete_url = `${this.url}api/recipes/${this.props.data.id}/`;
+    this.refresh_url = `${this.url}api/token/refresh/`
   }
   componentDidMount = () => {
     // const user = sessionStorage.getItem('foodiejournals-user');
@@ -38,25 +39,25 @@ class Recipe_info extends React.Component {
 
   async deleteHandler(e){
     let accessToken= sessionStorage.getItem("foodiejournals-access-token");
-    
     const config = {
       headers: { "Authorization": "Bearer " + accessToken }
     }
     try {
-      await axios.delete(this.delete_url, config);
+      await axios.delete(this.delete_url, {data:this.props.data}, config);
       Router.push('/account');
     }
     catch {
       let refreshToken= sessionStorage.getItem("foodiejournals-refresh-token")
       try {
-        const refreshRes = await axios.post(refresh_url, refreshToken);
+        const refreshRes = await axios.post(this.refresh_url, {refresh: refreshToken});
+
         accessToken = refreshRes.data.access;
         sessionStorage.setItem("foodiejournals-access-token", accessToken);
         await axios.delete(this.delete_url, config);
         Router.push('/account');
       }
       catch{
-        alert("you don't own this post")
+        alert("2nd failed")
       }
     }
   }
