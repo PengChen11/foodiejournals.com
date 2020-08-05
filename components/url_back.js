@@ -3,10 +3,10 @@
 
 
 //Production
-module.exports = "https://foodie-journals.herokuapp.com/"
+// module.exports = "https://foodie-journals.herokuapp.com/"
 
 
 //Azure
-// module.exports = "http://52.247.232.82:8001/"
+module.exports = "http://52.247.232.82:8001/"
 
 

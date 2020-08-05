@@ -52,7 +52,6 @@ class Navbar extends React.Component {
     // let url = require('../components/url_back');
     let searchUrl = `${url}api/users/?search=${user}`
     let response = await axios.get(searchUrl);
-    alert('runs')
     sessionStorage.setItem('foodiejournals-user-id', response.data[0].id)
   }
 
