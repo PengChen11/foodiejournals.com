@@ -7,6 +7,7 @@
 
 
 //Azure
-module.exports = "http://52.247.232.82:8001/"
+// module.exports = "http://52.247.232.82:8001/"
 
-
+//AWS
+module.exports = "http://3.137.160.135:8000/"
